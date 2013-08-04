@@ -10,7 +10,7 @@ Version: 0.1
 Stable tag: 0.1
 License: Code can be used and modified freely as long as Guus Ellenkamp is mentioned as the original author.
 
-Purpose of this plugin is to maintain a simple mailing list and send html e-mails to the people in the list.
+Purpose of this plugin is to do some simple on site search engine optimization.
 
 == Description ==
 
