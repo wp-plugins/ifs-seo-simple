@@ -36,7 +36,7 @@
 			<h2>Configuration IFS SEO Simple.</h2>
 			<?php
 				echo '<p>';
-				if (_LOCAL_DEVELOPMENT) {
+				if (defined('_LOCAL_DEVELOPMENT')) {
 					$meta=get_user_meta(1);
 					var_dump($meta['metaboxhidden_post']);
 				}
