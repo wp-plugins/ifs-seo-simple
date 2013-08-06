@@ -6,7 +6,7 @@ Description: IFS module for SEO in a very simple way
 Tags: seo, search engine optimization
 Requires at least: 3.0
 Tested up to: 3.6
-Version: 1.0
+Version: 1.1
 Stable tag: 1.0
 License: GPLv2
 
@@ -28,13 +28,16 @@ The IFS Simple SEO module does not require any specific installation, except jus
 
 = Do the ideas from Guus work =
 
-No clue, but nobody really knows how Google ranks sites, not even the Google engineers as one may presume everything is automated.
+We don't know, but nobody really knows how Google ranks sites, not even the Google engineers as one may presume everything is automated.
 
 == Screenshots ==
 
 No screenshots needed. Just standard Wordpress.
 
 == Changelog ==
+
+= 1.1 =
+* No fixes yet
 
 = 1.0 =
 * Fixed configuration link in main text.
