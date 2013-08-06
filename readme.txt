@@ -6,15 +6,15 @@ Description: IFS module for SEO in a very simple way
 Tags: seo, search engine optimization
 Requires at least: 3.0
 Tested up to: 3.6
-Version: 0.1
+Version: 0.2
 Stable tag: 0.1
-License: Code can be used and modified freely as long as Guus Ellenkamp is mentioned as the original author.
+License: GPLv2
 
 Purpose of this plugin is to do some simple on site search engine optimization.
 
 == Description ==
 
-This plugin is intended to make SEO very simple, not necessarily easy.
+This plugin is intended to make on site SEO very simple, not necessarily easy.
 
 It goes back to the ideas of Guus Ellenkamp about SEO.
 
@@ -36,7 +36,11 @@ No screenshots needed. Just standard Wordpress.
 
 == Changelog ==
 
+= 1.0 =
+* Fixed configuration link in main text.
+* Added noindex option for archive pages.
+
 = 0.1 =
-* just copied some stuff from the IFS template.
+* Just copied some stuff from the IFS template.
 
 

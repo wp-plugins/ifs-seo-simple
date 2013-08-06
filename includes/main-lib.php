@@ -8,9 +8,11 @@
 		$title=getParam('title');
 		$description=getParam('description');
 		$keywords=getParam('keywords');
+		$noIndexArchive=getParam('noindexarchive');
 		$currentTitleOption=get_option('ifs_default_site_title');
 		$currentDescriptionOption=get_option('ifs_default_site_description');
 		$currentKeywordsOption=get_option('ifs_default_site_keywords');
+		$noIndexArchiveOption=get_option('ifs_do_not_index_archive_pages');
 		if ($title==$currentTitleOption) {
 			echo '<p class="note">Title not changed.</p>';
 		}
@@ -45,6 +47,34 @@
 			}
 			else {
 				echo '<p class="error">Error setting new default site meta keywods. Please contact support.</p>';
+			}
+		}
+		//echo '<p>$noIndexArchive: '.$noIndexArchive.'</p>';
+		//echo '<p>$noIndexArchiveOption: '.$noIndexArchiveOption.'</p>';
+		if ($noIndexArchive=='true') {
+			if ($noIndexArchiveOption=='true') { // It was set before
+				echo '<p class="note">Do not archive indexing setting did not change and is and was set to \'do not index archive pages\'. This is the recommended setting.</p>';
+			}
+			else { // Value changed from false to true
+				if (update_option('ifs_do_not_index_archive_pages','true')) {
+					echo '<p class="note">Do not archive indexing turned on. This is the recommended setting.</p>'; 			
+				}
+				else {
+					echo '<p class="error">Error setting archive indexing option. Please contact support.</p>';
+				}
+			}
+		}
+		else { // $noIndexArchive is false
+			if ($noIndexArchiveOption=='false') {
+				echo '<p class="note">Do not archive indexing setting did not change and is and was set to \'do index archive pages\'. This is NOT the recommended setting.</p>';
+			}
+			else {
+				if (update_option('ifs_do_not_index_archive_pages','false')) {
+					echo '<p class="note">Do not archive indexing turned off. This is NOT the recommended setting.</p>'; 			
+				}
+				else {
+					echo '<p class="error">Error setting archive indexing option. Please contact support.</p>';
+				}
 			}
 		}
 		die;

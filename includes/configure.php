@@ -34,6 +34,14 @@
 			</script>
 			<?php ifsSeoAjaxScript('callBackForSeoSimpleConfiguration');?>
 			<h2>Configuration IFS SEO Simple.</h2>
+			<?php
+				echo '<p>';
+				if (_LOCAL_DEVELOPMENT) {
+					$meta=get_user_meta(1);
+					var_dump($meta['metaboxhidden_post']);
+				}
+				echo '</p>';
+			?>
 			<p>On this page you can configure options for IFS SEO Simple.</p>
 			<form action="/" method="post">
 				<script type="text/javascript">
@@ -42,11 +50,13 @@
 							titleObject=document.getElementById('titleid');
 							descriptionObject=document.getElementById('descriptionid');
 							keywordsObject=document.getElementById('keywordsid');
+							noIndexArchiveObject=document.getElementById('noindexarchiveid');
 							callBackForSeoSimpleConfiguration('waiting');
 							var parameters={
 								title: titleObject.value,
 								description: descriptionObject.value,
-								keywords: keywordsObject.value
+								keywords: keywordsObject.value,
+								noindexarchive: noIndexArchiveObject.checked
 							}
 							ifsSeoAjaxCall('configuremailer',parameters);
 						}
@@ -84,6 +94,14 @@
 						<td><p>Default keywords:</p></td>
 						<td><p><input id="keywordsid" type="text" size="100" name="keywords" value="<?php echo $defaultKeywords;?>"/></p></td>
 						<td><p>These are the default keywords for the site and shown in the 'meta keywords' tag.</p></td>
+					</tr>
+					<tr>
+						<?php
+							$doNotIndexArchive=get_option('ifs_do_not_index_archive_pages');
+						?>
+						<td><p>Do not index archive pages:</p></td>
+						<td><p><input id="noindexarchiveid" type="checkbox" name="noindexarchive"<?php echo ($doNotIndexArchive==='true')?' checked="checked"':'';?> value="<?php echo ($doNotIndexArchive==='true')?'true':'';?>"/> More detailed options planned.</p></td>
+						<td><p>To keep a clean site towards search engines with only the real content pages indexed you may want to tell Google not to index archive pages. An archive page is a category, tag, author or a date based page. So for the technical people: we will add a meta tag &lt;meta name="robots" content="noindex, follow"/&gt; for archive pages.</p></td>
 					</tr>
 					<tr>
 						<td></td>

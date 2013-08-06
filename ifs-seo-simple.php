@@ -8,7 +8,23 @@ Version: 0.2
 Stable tag: 0.1
 Author: Guus Ellenkamp
 Author URI: http://designs.activediscovery.net/
-License: Code can be used and modified freely as long as Guus Ellenkamp is mentioned as the original author.
+License: GPLv2
+
+
+Copyright 2013 Guus Ellenkamp
+ 
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License, version 2, as
+published by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 if (!defined('_VALID_ADD')) define('_VALID_ADD',1);
@@ -40,6 +56,13 @@ function showIfsInfo() {
 function ifs_simple_seo_wp_head_action() {
 	global $ifsInHead;
 	$ifsInHead=true;
+	$doNotIndexArchive=get_option('ifs_do_not_index_archive_pages');
+
+	if ($doNotIndexArchive==='true') {
+		if (is_archive()) { 
+			echo '<meta name="robots" content="noindex, follow"/>';
+		}
+	}
 }
 
 function ifs_simple_seo_wp_body_action() {
@@ -118,7 +141,7 @@ function ifs_seo_simple() {
 		<h2>Suggested steps</h2>
 		<p>Suggested steps for initial setup are:</p>
 		<ol>
-			<li>Configure the default site title, default site description and default site keywords in the <a href="<?php echo admin_url().'admin.php?page=ifs-seo-simple';?>">IFS SEO Simple configuration screen</a>.</li>
+			<li>Configure the default site title, default site description and default site keywords in the <a href="<?php echo admin_url().'admin.php?page=ifs-seo-configure';?>">IFS SEO Simple configuration screen</a>.</li>
 			<li>Turn on <span style="font-style:italic">Custom fields</span> for <span style="font-weight:bold">posts</span> in the screen <a href="<?php echo admin_url().'post-new.php';?>">add new <span style="font-weight:bold">post</span></a>. Click on the button <span style="font-style:italic">Screen Options</span> (right top) and check the box <span style="font-style:italic">Custom Fields</span>.</li>
 			<li>Turn on <span style="font-style:italic">Custom fields</span> for <span style="font-weight:bold">pages</span> in the screen <a href="<?php echo admin_url().'post-new.php?post_type=page';?>">add new <span style="font-weight:bold">page</span></a>. Click on the button <span style="font-style:italic">Screen Options</span> (right top) and check the box <span style="font-style:italic">Custom Fields</span>.</li>
 		</ol>
