@@ -6,8 +6,8 @@ Description: IFS module for SEO in a very simple way
 Tags: seo, search engine optimization
 Requires at least: 3.0
 Tested up to: 3.6
-Version: 0.2
-Stable tag: 0.1
+Version: 1.0
+Stable tag: 1.0
 License: GPLv2
 
 Purpose of this plugin is to do some simple on site search engine optimization.
