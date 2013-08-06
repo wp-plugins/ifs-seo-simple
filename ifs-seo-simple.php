@@ -4,8 +4,8 @@ Plugin Name: IFS Seo Simple
 Plugin URI: http://www.inspiration-for-success.com/plugins/
 Description: IFS module for SEO in a very simple way
 Tags: seo, search engine optimization, simple, simple seo
-Version: 0.2
-Stable tag: 0.1
+Version: 1.1
+Stable tag: 1.0
 Author: Guus Ellenkamp
 Author URI: http://designs.activediscovery.net/
 License: GPLv2
