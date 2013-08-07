@@ -20,9 +20,13 @@ It goes back to the ideas of Guus Ellenkamp about SEO.
 
 You will need to know how to turn on the Wordpress custom fields. That's all.
 
+More information on how it all works in the screens of the plugin.
+
 == Installation ==
 
 The IFS Simple SEO module does not require any specific installation, except just download from Wordpress and install yourself or use the Wordpress installer.
+
+More information about configuring in the screens of the plugin. It has a configuration screen.
 
 == Frequently Asked Questions ==
 
