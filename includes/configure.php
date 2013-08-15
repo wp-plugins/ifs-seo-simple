@@ -35,7 +35,7 @@
 			<?php ifsSeoAjaxScript('callBackForSeoSimpleConfiguration');?>
 			<h2>Configuration IFS SEO Simple.</h2>
 			<?php
-				if (defined('_LOCAL_DEVELOPMENT') {
+				if (defined('_LOCAL_DEVELOPMENT')) {
 					echo '<p>';
 					$meta=get_user_meta(1);
 					var_dump($meta['metaboxhidden_post']);
@@ -100,7 +100,7 @@
 							$doNotIndexArchive=get_option('ifs_do_not_index_archive_pages');
 						?>
 						<td><p>Do not index archive pages:</p></td>
-						<td><p><input id="noindexarchiveid" type="checkbox" name="noindexarchive"<?php echo ($doNotIndexArchive==='true')?' checked="checked"':'';?> value="<?php echo ($doNotIndexArchive==='true')?'true':'';?>"/> More detailed options planned.</p></td>
+						<td><p><input id="noindexarchiveid" type="checkbox" name="noindexarchive"<?php echo ($doNotIndexArchive==='true')?' checked="checked"':'';?> value="<?php echo ($doNotIndexArchive==='true')?'true':'';?>"/> Can only be set for all archive pages, more detailed options planned.</p></td>
 						<td><p>To keep a clean site towards search engines with only the real content pages indexed you may want to tell Google not to index archive pages. An archive page is a category, tag, author or a date based page. So for the technical people: we will add a meta tag &lt;meta name="robots" content="noindex, follow"/&gt; for archive pages.</p></td>
 					</tr>
 					<tr>

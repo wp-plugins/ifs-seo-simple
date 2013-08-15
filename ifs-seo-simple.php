@@ -5,7 +5,7 @@ Plugin URI: http://www.inspiration-for-success.com/plugins/
 Description: IFS module for SEO in a very simple way
 Tags: seo, search engine optimization, simple, simple seo
 Version: 1.1
-Stable tag: 1.0
+Stable tag: 1.1
 Author: Guus Ellenkamp
 Author URI: http://designs.activediscovery.net/
 License: GPLv2
