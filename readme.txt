@@ -7,7 +7,7 @@ Tags: seo, search engine optimization
 Requires at least: 3.0
 Tested up to: 3.6
 Version: 1.2
-Stable tag: 1.1
+Stable tag: 1.2
 License: GPLv2
 
 Purpose of this plugin is to do some simple on site search engine optimization.
