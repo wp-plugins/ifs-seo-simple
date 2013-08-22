@@ -38,7 +38,7 @@
 				if (defined('_LOCAL_DEVELOPMENT')) {
 					echo '<p>';
 					$meta=get_user_meta(1);
-					var_dump($meta['metaboxhidden_post']);
+					print_r($meta['metaboxhidden_post']);
 					echo '</p>';
 				}
 			?>
@@ -50,12 +50,14 @@
 							titleObject=document.getElementById('titleid');
 							descriptionObject=document.getElementById('descriptionid');
 							keywordsObject=document.getElementById('keywordsid');
+							useBasicTitlesObject=document.getElementById('usebasictitles');
 							noIndexArchiveObject=document.getElementById('noindexarchiveid');
 							callBackForSeoSimpleConfiguration('waiting');
 							var parameters={
 								title: titleObject.value,
 								description: descriptionObject.value,
 								keywords: keywordsObject.value,
+								usebasictitles: useBasicTitlesObject.checked,
 								noindexarchive: noIndexArchiveObject.checked
 							}
 							ifsSeoAjaxCall('configuremailer',parameters);
@@ -94,6 +96,14 @@
 						<td><p>Default keywords:</p></td>
 						<td><p><input id="keywordsid" type="text" size="100" name="keywords" value="<?php echo $defaultKeywords;?>"/></p></td>
 						<td><p>These are the default keywords for the site and shown in the 'meta keywords' tag.</p></td>
+					</tr>
+					<tr>
+						<?php
+							$useBasicTitles=get_option('ifs-use-basic-titles');
+						?>
+						<td><p>Use basic titles:</p></td>
+						<td><p><input id="usebasictitles" type="checkbox" name="usebasictitles"<?php echo ($useBasicTitles==='true')?' checked="checked"':'';?> value="<?php echo ($doNotIndexArchive==='true')?'true':'';?>"/></p></td>
+						<td><p>To keep a clean site towards search engines we recommend to only use the blog title, exclusive of the blog title.</p></td>
 					</tr>
 					<tr>
 						<?php

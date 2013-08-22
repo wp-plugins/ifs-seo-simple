@@ -8,10 +8,12 @@
 		$title=getParam('title');
 		$description=getParam('description');
 		$keywords=getParam('keywords');
+		$useBasicTitles=getParam('usebasictitles');
 		$noIndexArchive=getParam('noindexarchive');
 		$currentTitleOption=get_option('ifs_default_site_title');
 		$currentDescriptionOption=get_option('ifs_default_site_description');
 		$currentKeywordsOption=get_option('ifs_default_site_keywords');
+		$useBasicTitlesOption=get_option('ifs-use-basic-titles');
 		$noIndexArchiveOption=get_option('ifs_do_not_index_archive_pages');
 		if ($title==$currentTitleOption) {
 			echo '<p class="note">Title not changed.</p>';
@@ -43,14 +45,41 @@
 		}
 		else {
 			if (update_option('ifs_default_site_keywords',$keywords)) {
-				echo '<p class="note">Site default meta keywords changed from <span style="font-style:italic">'.$currentDescriptionOption.'</span><br/>to <span style="font-style:italic">'.$description.'</span>.</p>'; 
+				echo '<p class="note">Site default meta keywords changed from<p>';
+				echo '<span style="margin-left:5%;font-style:italic">'.$currentKeywordsOption.'</p>';
+				echo '<p style="margin-left:5%">to</p>';
+				echo '<p style="margin-left:5%;font-style:italic">'.$keywords.'</span>.</p>'; 
 			}
 			else {
 				echo '<p class="error">Error setting new default site meta keywods. Please contact support.</p>';
 			}
 		}
-		//echo '<p>$noIndexArchive: '.$noIndexArchive.'</p>';
-		//echo '<p>$noIndexArchiveOption: '.$noIndexArchiveOption.'</p>';
+		if ($useBasicTitles=='true') {
+			if ($useBasicTitlesOption=='true') { // It was set before
+				echo '<p class="note">Use basic titles setting did not change and is and was set to \'use basic titles\'. This is the recommended setting.</p>';
+			}
+			else { // Value changed from false to true
+				if (update_option('ifs-use-basic-titles','true')) {
+					echo '<p class="note">Use basic titles setting turned on. This is the recommended setting.</p>'; 			
+				}
+				else {
+					echo '<p class="error">Error setting basic titles setting option. Please contact support.</p>';
+				}
+			}
+		}
+		else { // $noIndexArchive is false
+			if ($useBasicTitlesOption=='false') {
+				echo '<p class="note">Use basic titles setting did not change and is and was set to \' not use basic titles\'. This is NOT the recommended setting.</p>';
+			}
+			else {
+				if (update_option('ifs-use-basic-titles','false')) {
+					echo '<p class="note">Use basic titles turned off. This is NOT the recommended setting.</p>'; 			
+				}
+				else {
+					echo '<p class="error">Error setting archive indexing option. Please contact support.</p>';
+				}
+			}
+		}
 		if ($noIndexArchive=='true') {
 			if ($noIndexArchiveOption=='true') { // It was set before
 				echo '<p class="note">Do not archive indexing setting did not change and is and was set to \'do not index archive pages\'. This is the recommended setting.</p>';
