@@ -6,7 +6,7 @@ Description: IFS module for SEO in a very simple way
 Tags: seo, search engine optimization
 Requires at least: 3.0
 Tested up to: 3.6
-Version: 1.3
+Version: 1.4
 Stable tag: 1.3
 License: GPLv2
 
