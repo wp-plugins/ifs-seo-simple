@@ -121,6 +121,15 @@ function writeUrlLine($message,$debugOnly=false) { //Based on writeLogLine()
 
 	global $absolutePath, $debug, $appName;
 
+	if (!isset($absolutePath)) {
+		if (defined('ABSPATH')) {
+			$absolutePath=ABSPATH;
+		}
+		else {
+			$absolutePath='';
+		}
+	}
+	
 	if (!$debugOnly&&!$debug) {
 		$logfile=$absolutePath."/sitemaps/".$appName."-sitemap.xml";
 		$handle=fopen($logfile,'a');		
@@ -214,7 +223,7 @@ function sendErrorEmail($errorMessage) {
 }
 
 //Write message in the system.log file
-function writeLogLineAdd($message,$debugOnly=false) { // Changed for parameter $debugOnly July 14, 2010, Guus. Not tested!!!!
+function writeLogLine($message,$debugOnly=false) { // Changed for parameter $debugOnly July 14, 2010, Guus. Not tested!!!!
 
 	global $absolutePath, $debug, $appName;
 
@@ -240,7 +249,7 @@ function writeLogLineAdd($message,$debugOnly=false) { // Changed for parameter $
 }
 
 //Use to get HTTP Request variables
-function getParamAdd($name,$default='',$forceRequestType='') {
+function getParam($name,$default='',$forceRequestType='') {
 	
 	if (isset($_REQUEST[$name])) {
 		// if ($_REQUEST[$name]) { // Added May 10, 2011 by Guus, and removed May 28, 2011, also by Guus
@@ -273,7 +282,7 @@ function getParamAdd($name,$default='',$forceRequestType='') {
 }
 
 ///added by jeram, june 18, 2012
-function checkForMagicQuotesAdd($value) {
+function checkForMagicQuotes($value) {
 	if (get_magic_quotes_gpc()) {
 		//added by pilardo dec 06, 2012
 		if(is_array($value)) {
@@ -463,7 +472,9 @@ function makeDefines($fileName) {
 				if ($position) {
 					$defineValue=substr($content,0,$position);
 					$contentValue=substr($content,$position+1);
-					define($defineValue,rtrim($contentValue,"\r\n"));
+					if (!defined($defineValue)) {
+						define($defineValue,rtrim($contentValue,"\r\n"));
+					}
 				}
 			}
 		}

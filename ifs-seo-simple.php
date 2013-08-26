@@ -4,8 +4,8 @@ Plugin Name: IFS Seo Simple
 Plugin URI: http://www.inspiration-for-success.com/plugins/
 Description: IFS module for SEO in a very simple way
 Tags: seo, search engine optimization, simple, simple seo
-Version: 1.2
-Stable tag: 1.2
+Version: 1.3
+Stable tag: 1.3
 Author: Guus Ellenkamp
 Author URI: http://designs.activediscovery.net/
 License: GPLv2
@@ -78,7 +78,7 @@ function ifs_seo_simple_title_filter($titleIn,$separator,$separatorLocation) {
 	if (is_home()) { // For home we set some default title
 		$defaultTitle=get_option('ifs_default_site_title');
 		if ($defaultTitle) {
-			$title=$defaultTitle;
+			$title=htmlspecialchars($defaultTitle);
 		}
 		else {
 			$title=$titleIn;
@@ -89,13 +89,13 @@ function ifs_seo_simple_title_filter($titleIn,$separator,$separatorLocation) {
 		if (!$title) { // Support for old version
 			$titles=get_post_custom_values('title');
 			if (count($titles)) {
-				$title=$titles[0];
+				$title=htmlspecialchars($titles[0]);
 			}
 			else {
 				if (get_option('ifs-use-basic-titles')=='true') {
 					// Need to still check archive pages
 					if (!is_archive()) {
-						$title=$post->post_title;
+						$title=htmlspecialchars($post->post_title);
 					}
 					else {
 						$title=$titleIn;
@@ -152,12 +152,12 @@ function ifs_seo_simple_meta_action() { // Currently copied from success theme.
 		
 	}
 	if ($description) {
-		echo '<meta name="description" content="'.$description.'"/>';
+		echo '<meta name="description" content="'.htmlspecialchars($description).'"/>';
 		echo "\r\n";
 	}
 		
 	if ($keywords) {
-		echo '<meta name="keywords" content="'.$keywords.'"/>';
+		echo '<meta name="keywords" content="'.htmlspecialchars($keywords).'"/>';
 		echo "\r\n";
 	}
 }

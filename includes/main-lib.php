@@ -15,6 +15,11 @@
 		$currentKeywordsOption=get_option('ifs_default_site_keywords');
 		$useBasicTitlesOption=get_option('ifs-use-basic-titles');
 		$noIndexArchiveOption=get_option('ifs_do_not_index_archive_pages');
+		if (true) { // We still have some slashes issue
+			$title=stripslashes($title);
+			$description=stripslashes($description);
+			$keywords=stripslashes($keywords);
+		}
 		if ($title==$currentTitleOption) {
 			echo '<p class="note">Title not changed.</p>';
 		}
