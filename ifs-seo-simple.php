@@ -4,8 +4,8 @@ Plugin Name: IFS Seo Simple
 Plugin URI: http://www.inspiration-for-success.com/plugins/
 Description: IFS module for SEO in a very simple way
 Tags: seo, search engine optimization, simple, simple seo
-Version: 1.4
-Stable tag: 1.3
+Version: 1.31
+Stable tag: 1.31
 Author: Guus Ellenkamp
 Author URI: http://designs.activediscovery.net/
 License: GPLv2
@@ -255,7 +255,25 @@ function ifs_seo_meta_box_html($post,$meta) {
 	$title=get_post_meta($post->ID,'_ifs-title',true);
 	$description=get_post_meta($post->ID,'_ifs-meta-description',true);
 	$keywords=get_post_meta($post->ID,'_ifs-meta-keywords',true);
-	
+	if (!$title) { // See if there is an old version meta keywords
+		$titles=get_post_custom_values('title');
+		if (isset($titles[0])) {
+			$title=$titles[0];
+		}
+	}
+	if (!$description) { // See if there is an old version meta description
+		$descriptions=get_post_custom_values('description');
+		if (isset($descriptions[0])) {
+			$description=$descriptions[0];
+		}
+	}
+	if (!$keywords) { // See if there is an old version meta keywords
+		$keywords=get_post_custom_values('keywords');
+		if (isset($keywords[0])) {
+			$keywords=$keywords[0];
+		}
+	}
+
 	echo '<table>';
 	echo '<tr>';
 	echo '<td style="vertical-align:top">Meta description:&nbsp;</td>';

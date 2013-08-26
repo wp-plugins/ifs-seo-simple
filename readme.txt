@@ -6,8 +6,8 @@ Description: IFS module for SEO in a very simple way
 Tags: seo, search engine optimization
 Requires at least: 3.0
 Tested up to: 3.6
-Version: 1.4
-Stable tag: 1.3
+Version: 1.31
+Stable tag: 1.31
 License: GPLv2
 
 Purpose of this plugin is to make on site search engine optimization simple.
@@ -43,6 +43,9 @@ We left options for you to decide, like whether to use standard Wordpress titles
 You just see some additional fields in the standard edit screens of Wordpress.
 
 == Changelog ==
+
+= 1.31 =
+* Fetch old custom fields title, description and keywords in back-end.
 
 = 1.3 =
 * Better handling of html special characters.
