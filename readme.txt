@@ -20,6 +20,8 @@ Next to adding the meta keywords and meta description tag it also has the option
 
 More information about the background of the plugin in the IFS SEO Simple main screen. Just download and install. The plugin won't change anything before you configure it, so you can install it safely. You will only see some additional fields in the edit screen, but if left empty they don't do anything.
 
+And no, the keywords meta tag is not one of the two most important items in a webpage.
+
 == Installation ==
 
 The IFS Simple SEO module does not require any specific installation, except just download from Wordpress and install yourself or use the Wordpress installer.
