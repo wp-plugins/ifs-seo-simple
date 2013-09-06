@@ -6,8 +6,8 @@ Description: IFS module for SEO in a very simple way
 Tags: seo, search engine optimization
 Requires at least: 3.0
 Tested up to: 3.6
-Version: 1.31
-Stable tag: 1.31
+Version: 1.4
+Stable tag: 1.4
 License: GPLv2
 
 Purpose of this plugin is to make on site search engine optimization simple.
@@ -40,9 +40,21 @@ We left options for you to decide, like whether to use standard Wordpress titles
 
 == Screenshots ==
 
-You just see some additional fields in the standard edit screens of Wordpress.
+1. This screenshot shows the fields added to your edit post and edit page screens. You can set the meta description and the meta keywords for the individual post or page here. By putting text in the title you override the default title for the post or page.
+
+2. This screenshot shows the IFS SEO Simple configuration screen.
+
+3. This screenshot shows how to show or hide the IFS SEO Simple area in the edit page or post screens.
+
+== Upgrade notice ==
+
+No special requirements for upgrades.
 
 == Changelog ==
+
+= 1.4 =
+* Added display of current configuration in home screen.
+* Added screenshots and banner.
 
 = 1.31 =
 * Fetch old custom fields title, description and keywords in back-end.

@@ -4,8 +4,8 @@ Plugin Name: IFS Seo Simple
 Plugin URI: http://www.inspiration-for-success.com/plugins/
 Description: IFS module for SEO in a very simple way
 Tags: seo, search engine optimization, simple, simple seo
-Version: 1.31
-Stable tag: 1.31
+Version: 1.4
+Stable tag: 1.4
 Author: Guus Ellenkamp
 Author URI: http://designs.activediscovery.net/
 License: GPLv2
@@ -29,6 +29,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 if (!defined('_VALID_ADD')) define('_VALID_ADD',1);
 
+require_once(ABSPATH.'/wp-content/plugins/ifs-seo-simple/includes/add_mini_lib.php');
 require_once(ABSPATH.'/wp-content/plugins/ifs-seo-simple/includes/main-lib.php');
 
 //register_activation_hook( __FILE__, 'ifs_install' );
@@ -166,8 +167,49 @@ function ifs_seo_simple() {
 	?>
 		<h1>SEO Simple</h1>
 		<h2>Current settings</h2>
-		<p>Current settings will be displayed here in the next version.</p>
-		<p>You can see and configure IFS SEO Simple in the <a href="<?php echo admin_url().'admin.php?page=ifs-seo-configure';?>">IFS SEO Simple configuration screen</a>.</p>
+		<?php 
+			$defaultTitle=get_option('ifs_default_site_title');
+			if ($defaultTitle) {
+				echo '<p>Your current default title is: <span style="font-weight:bold">'.$defaultTitle.'</span>.</p>';
+			}
+			else {
+				echo '<p>You did not set the default title for the IFS SEO Simple plugin. Please configure it in the <a href="'.admin_url().'admin.php?page=ifs-seo-configure">IFS SEO Simple configuration screen</a>.</p>';
+			}
+
+			$defaultDescription=get_option('ifs_default_site_description');
+			if ($defaultDescription) {
+				echo '<p>Your current default meta description is: <span style="font-weight:bold">'.$defaultDescription.'</span>.</p>';
+			}
+			else {
+				echo '<p>You did not set the default meta description for the IFS SEO Simple plugin. Please configure it in the <a href="'.admin_url().'admin.php?page=ifs-seo-configure">IFS SEO Simple configuration screen</a>.</p>';
+			}
+
+			$defaultKeywords=get_option('ifs_default_site_keywords');
+			if ($defaultDescription) {
+				echo '<p>Your current default meta keywords meta is: <span style="font-weight:bold">'.$defaultKeywords.'</span>.</p>';
+			}
+			else {
+				echo '<p>You did not set the default meta keywords for the IFS SEO Simple plugin. Please configure it in the <a href="'.admin_url().'admin.php?page=ifs-seo-configure">IFS SEO Simple configuration screen</a>.</p>';
+			}
+
+			$useBasicTitles=get_option('ifs-use-basic-titles');
+			if ($useBasicTitles=='true') {
+				echo '<p>Your current basic title setting is to show basic titles. This is the recommended setting.</p>';
+			}
+			else {
+				echo '<p>Your current basic title setting is to <span style="font-weight:bold">NOT</span> show basic titles. This is <span style="font-weight:bold">NOT</span> the recommended setting.</p>';
+			}
+
+			$doNotIndexArchive=get_option('ifs_do_not_index_archive_pages');
+			if ($doNotIndexArchive=='true') {
+				echo '<p>Your current archive page index setting is to not index archive pages. This is the recommended setting.</p>';
+			}
+			else {
+				echo '<p>Your current archive page index setting is to index archive pages. This is <span style="font-weight:bold">NOT</span> the recommended setting.</p>';
+			}
+		?>
+		<h2>Configure</h2>
+		<p>You can configure IFS SEO Simple configuration options in the <a href="<?php echo admin_url().'admin.php?page=ifs-seo-configure';?>">IFS SEO Simple configuration screen</a>.</p>
 		<p>Of course you can also check <a href="http://wordpress.org/support/plugin/ifs-seo-simple" target="_blank">Wordpress IFS SEO Simple</a> on the Wordpress site.</p>
 		<h2>Documentation</h2>
 		<p>Read about IFS SEO Simple in the <a href="<?php echo admin_url().'admin.php?page=ifs-seo-documentation';?>">IFS SEO Simple documentation screen</a>.</p>
