@@ -54,6 +54,7 @@
 							noIndexArchiveObject=document.getElementById('noindexarchiveid');
 							callBackForSeoSimpleConfiguration('waiting');
 							var parameters={
+								task: 'configure',
 								title: titleObject.value,
 								description: descriptionObject.value,
 								keywords: keywordsObject.value,

@@ -4,8 +4,8 @@ Plugin Name: IFS Seo Simple
 Plugin URI: http://www.inspiration-for-success.com/plugins/
 Description: IFS module for SEO in a very simple way
 Tags: seo, search engine optimization, simple, simple seo
-Version: 1.4
-Stable tag: 1.4
+Version: 1.5
+Stable tag: 1.5
 Author: Guus Ellenkamp
 Author URI: http://designs.activediscovery.net/
 License: GPLv2
@@ -29,12 +29,13 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 if (!defined('_VALID_ADD')) define('_VALID_ADD',1);
 
+if (!defined('_LOCAL_DEVELOPMENT')) define('LOCAL_DEVEOPMENT',0);
+
 require_once(ABSPATH.'/wp-content/plugins/ifs-seo-simple/includes/add_mini_lib.php');
 require_once(ABSPATH.'/wp-content/plugins/ifs-seo-simple/includes/main-lib.php');
 
 //register_activation_hook( __FILE__, 'ifs_install' );
 
-if (!defined('_LOCAL_DEVELOPMENT')) define('LOCAL_DEVEOPMENT',0);
 
 // Front end stuff
 
@@ -76,7 +77,7 @@ function ifs_seo_simple_title_filter($titleIn,$separator,$separatorLocation) {
 	
 	global $post;
 	
-	if (is_home()) { // For home we set some default title
+	if (is_home()||gettype($post)!='object') { // For home we set some default title
 		$defaultTitle=get_option('ifs_default_site_title');
 		if ($defaultTitle) {
 			$title=htmlspecialchars($defaultTitle);
@@ -166,6 +167,20 @@ function ifs_seo_simple_meta_action() { // Currently copied from success theme.
 function ifs_seo_simple() {
 	?>
 		<h1>SEO Simple</h1>
+		<?php
+			$installedConfirmation=get_option('ifs-seo-install-confirmed');
+			if ($installedConfirmation!='true') {
+				echo '<h2>Confirmation</h2>';
+				echo '<p>You did not confirm your installation yet. Please confirm your installation of IFS SEO Simple on the <a href="'.admin_url().'admin.php?page=ifs-seo-feedback">feedback page</a>.</p>';
+			}
+		?>
+		<h2>Why SEO Simple</h2>
+		<p>We believe on-page optimization starts with something very simple:</p>
+		<ul style="margin-left:5%">
+			<li>Make sure each page has a good and proper title.</li>
+			<li>Make sure each page has a good and proper meta description.</li>
+		</ul>
+		<p>So that's why we made this plugin, simple. Read more in the <a href="<?php echo admin_url().'admin.php?page=ifs-seo-documentation';?>">IFS SEO Simple documentation screen</a>.</p>
 		<h2>Current settings</h2>
 		<?php 
 			$defaultTitle=get_option('ifs_default_site_title');
@@ -186,7 +201,7 @@ function ifs_seo_simple() {
 
 			$defaultKeywords=get_option('ifs_default_site_keywords');
 			if ($defaultDescription) {
-				echo '<p>Your current default meta keywords meta is: <span style="font-weight:bold">'.$defaultKeywords.'</span>.</p>';
+				echo '<p>Your current default meta keywords are: <span style="font-weight:bold">'.$defaultKeywords.'</span>.</p>';
 			}
 			else {
 				echo '<p>You did not set the default meta keywords for the IFS SEO Simple plugin. Please configure it in the <a href="'.admin_url().'admin.php?page=ifs-seo-configure">IFS SEO Simple configuration screen</a>.</p>';
@@ -220,61 +235,20 @@ function ifs_seo_simple() {
 }
 
 function ifs_seo_simple_documentation() {
-	?>
-		<h1>SEO Simple documentation</h1>
-		<h2>Background</h2>
-		<p>We believe that on page SEO can be very simple and don't need very advanced extende plugins, so for our site <a href="http://www.inspiration-for-success.com/" target="_blank">Inspiration for Success</a> we use some very simple rules and ways to make the site search engine friendly.</p>
-		<p>As we think Wordpress by default is not specifically search engine friendly we made some changes to the theme that we now want to make available in the form of a plugin.</p>
-		<p>So as we are making this anyhow, why not make it available to you.</p>
-		<h2>Basic ideas and setup</h2>
-		<p>The basis comes from some other plugin which we could not find anymore, so that's why we created our own, with some additional options. And the basic idea of the other simple SEO plugin was very simple: use standard Wordpress custom fields to set title, keywords and description. So that's what was the core of our IFS SEO Simple plugin.</p>
-		<p>With version 1.2 we created our own fields for title, meta description and meta keywords tags, so no need to turn on and add custom fields manually. Of course we provide backwards compatibility.</p>
-		<p>Custom fields are turned off by default in the Wordpress edit screen, so you have to turn them on to use most of the features of this plugin: go to the 'edit post' and/or 'edit page' screen, go to 'screen options' you see at the right top and check the field 'custom fields'. That's all. Now you will see some stuff below the post or page edit fields.</p>
-		<h2>Suggested steps</h2>
-		<p>Suggested step for initial setup is:</p>
-		<ol>
-			<li>Configure the default site title, default site description and default site keywords in the <a href="<?php echo admin_url().'admin.php?page=ifs-seo-configure';?>">IFS SEO Simple configuration screen</a>.</li>
-		</ol>
-		<p>No need to turn on the custom fields anymore as in previous versions. We do provide backword compatibility, but please note we don't convert the old custom fields data. So just leave the old custom fields.</p>
-		<p>Continuous action for each post and page:</p>
-		<ul>
-			<li>Create a custom field <span style="font-style:italic;font-weight:bold">description</span> for each post and page.</li>
-			<li>Create a custom field <span style="font-style:italic;font-weight:bold">keywords</span> for each post and page.</li>
-			<li>Create a custom field <span style="font-style:italic;font-weight:bold">title</span> for a post or page if you want the title to be different from the post title as set in the default title field or the default Wordpress title.</li>
-		</ul>
-		<p>Graphics on the setup to follow.</p>
-		<h2>SEO Simple</h2>
-		<h3>Title tag</h3>
-		<p>As we believe the title tag is the most important item in a web page from an SEO point of view we think there is only one way to set it: manually.</p>
-		<p>And it needs to be set on a 'per page' basis, so we want various options to set it.</p>
-		<p>Normallly Wordpress uses the blog title as the page title, which in most cases certainly works very well, but we still wanted to have better control.</p>
-		<h3>Description meta tag</h3>
-		<p>The description meta tag is the second most important item in a web page as it is normally displayed by Google in the search results and will help people decide whether to go to a page or not.</p>
-		<p>So we believe that for each page that is to be found through Google the description meta tag should get a lot of attention.</p>
-		<h3>Keywords meta tag</h3>
-		<p>Many people believe the keywords meta tag is not being used anymore by Google. This may be true, but we believe something: if it doesn't help it doesn't hurt either if filled in properly.</p>
-		<p>So yes, we include features for the keywords meta tag and also always use it in our sites.</p>
-		<h2>Planned changes</h2>
-		<p>Planned changes are:</p>
-		<ul>
-			<li>Handling of titles of archive screens.</li>
-			<li>Showing current options in plugin home screen.</li>
-			<li>More detailed options for noindex of archive pages.</li>
-			<li>Store IFS version number to provide better support for upgrades and conversions in the future.</li>
-			<li>Check for duplicate meta description and meta keywords tags.</li>
-			<li>Improve the documentation.</li>
-			<li>Set option for priority to determine the location of the fields in the edit screen.</li>
-		</ul>
-		<h2>Credits</h2>
-		<p>The origin for this plugin lie in the project <a href="http://www.inspiration-for-success.com/" target="_blank">Inspiration for Success</a>.</p>
-		<p>Initial code was made by Guus who is the owner of <a href="http://designs.activediscovery.net/" target="_blank">Active Discovery Designs</a>.</p>
-	<?php
+	require_once(ABSPATH.'/wp-content/plugins/ifs-seo-simple/includes/documentation.php'); // Still thinking about performance AND readability...
+	ifsSeoDocumentation();
+}
+
+function ifs_seo_simple_feedback() {
+	require_once(ABSPATH.'/wp-content/plugins/ifs-seo-simple/includes/feedback.php'); // Still thinking about performance AND readability...
+	ifsSeoFeedback();
 }
 
 function ifs_seo_simple_menu () {
 	add_menu_page('IFS SEO Simple','IFS SEO Simple','manage_options','ifs-seo-simple','ifs_seo_simple');
 	add_submenu_page('ifs-seo-simple','SEO Simple documentation','Documentation SEO Simple','manage_options','ifs-seo-documentation','ifs_seo_simple_documentation');
 	add_submenu_page('ifs-seo-simple','Configure SEO Simple options','Configure SEO Simple','manage_options','ifs-seo-configure','ifs_seo_simple_configure');
+	add_submenu_page('ifs-seo-simple','Feedback SEO Simple options','Feedback about SEO Simple','manage_options','ifs-seo-feedback','ifs_seo_simple_feedback');
 }
 
 function ifs_seo_simple_configure() {

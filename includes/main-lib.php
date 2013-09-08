@@ -5,6 +5,25 @@
 	require_once(ABSPATH.'/wp-content/plugins/ifs-seo-simple/includes/add_mini_lib.php');
 	
 	function ifs_seo_action() {
+		
+		$task=getParam('task');
+		
+		switch ($task) {
+			case 'confirminstall':
+			case 'sendfeedback': {
+				require_once(ABSPATH.'/wp-content/plugins/ifs-seo-simple/includes/feedback.php'); // Still thinking about performance AND readability...
+				feedbackBackend();
+				die;
+			}
+			default: {
+				ifs_seo_action_old();
+				die;
+			}
+		}
+	}
+	
+	function ifs_seo_action_old() {
+	
 		$title=getParam('title');
 		$description=getParam('description');
 		$keywords=getParam('keywords');
