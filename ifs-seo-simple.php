@@ -4,8 +4,8 @@ Plugin Name: IFS Seo Simple
 Plugin URI: http://www.inspiration-for-success.com/plugins/
 Description: IFS module for SEO in a very simple way
 Tags: seo, search engine optimization, simple, simple seo
-Version: 1.5
-Stable tag: 1.5
+Version: 1.51
+Stable tag: 1.51
 Author: Guus Ellenkamp
 Author URI: http://designs.activediscovery.net/
 License: GPLv2
@@ -29,7 +29,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 if (!defined('_VALID_ADD')) define('_VALID_ADD',1);
 
-if (!defined('_LOCAL_DEVELOPMENT')) define('_LOCAL_DEVEOPMENT',0);
+if (!defined('_LOCAL_DEVELOPMENT')) define('_LOCAL_DEVELOPMENT',0);
 
 require_once(ABSPATH.'/wp-content/plugins/ifs-seo-simple/includes/add_mini_lib.php');
 require_once(ABSPATH.'/wp-content/plugins/ifs-seo-simple/includes/main-lib.php');
@@ -120,18 +120,24 @@ function ifs_seo_simple_meta_action() { // Currently copied from success theme.
 	// Add description and keywords meta tags
 	// No check for duplicate yet.
 	
-	echo '<!-- Add meta data. Post id is '.$post->ID.'. -->';
+	if (isset($post->ID))
+		echo '<!-- Add meta data. Post id is '.$post->ID.'. -->';
+	else {
+		echo '<!-- No post ID available. -->';
+	}
 	
+	/* causes problem when there is an end comment in the post data.
 	if (defined('_LOCAL_DEVELOPMENT')) {
 		echo '<!--';
 		print_r($post);
 		echo '-->';
 	}
+	*/
 	
 	// New version
 	$defaultDescription=get_option('ifs_default_site_description');
 	$defaultKeywords=get_option('ifs_default_site_keywords');		
-	if (is_home()) {
+	if (is_home()||(!isset($post->ID))) {
 		$description=$defaultDescription;
 		$keywords=$defaultKeywords;
 	}
