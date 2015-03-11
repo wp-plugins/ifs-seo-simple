@@ -5,9 +5,9 @@ Donate link: http://www.inspiration-for-success.com/pay/
 Description: IFS module for SEO in a very simple way
 Tags: seo, search engine optimization
 Requires at least: 3.0
-Tested up to: 4.0
-Version: 1.52
-Stable tag: 1.52
+Tested up to: 4.1.1
+Version: 1.7
+Stable tag: 1.6
 License: GPLv2
 
 Purpose of this plugin is to make on site search engine optimization simple.
@@ -53,6 +53,10 @@ We left options for you to decide, like whether to use standard Wordpress titles
 No special requirements for upgrades.
 
 == Changelog ==
+
+= 1.6 =
+* Adding support for IFS post types. Does not affect public version.
+* Changed 'tested up to 4.1.1'.
 
 = 1.52 =
 * No change, Just changed 'tested up to 4.0'.

@@ -4,8 +4,8 @@ Plugin Name: IFS Seo Simple
 Plugin URI: http://www.inspiration-for-success.com/plugins/
 Description: IFS module for SEO in a very simple way
 Tags: seo, search engine optimization, simple, simple seo
-Version: 1.52
-Stable tag: 1.52
+Version: 1.7
+Stable tag: 1.6
 Author: Guus Ellenkamp
 Author URI: http://designs.activediscovery.net/
 License: GPLv2
@@ -28,7 +28,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 if (!defined('_VALID_ADD')) define('_VALID_ADD',1);
-
+if (!defined('_IS_IFS')) define('_IS_IFS',false);
 if (!defined('_LOCAL_DEVELOPMENT')) define('_LOCAL_DEVELOPMENT',0);
 
 require_once(ABSPATH.'/wp-content/plugins/ifs-seo-simple/includes/add_mini_lib.php');
@@ -321,6 +321,11 @@ function ifs_seo_meta_box_html($post,$meta) {
 function ífs_seo_add_meta_boxes() {
 	add_meta_box('ifs-meta-boxes-post','IFS SEO meta data','ifs_seo_meta_box_html','post');
 	add_meta_box('ifs-meta-boxes-page','IFS SEO meta data','ifs_seo_meta_box_html','page');
+	if (_IS_IFS) {
+		add_meta_box('ifs-meta-boxes-page','IFS SEO meta data','ifs_seo_meta_box_html','inspirational_site');
+		add_meta_box('ifs-meta-boxes-page','IFS SEO meta data','ifs_seo_meta_box_html','motivational_site');	
+		add_meta_box('ifs-meta-boxes-page','IFS SEO meta data','ifs_seo_meta_box_html','ins_mot_site');	
+	}
 }
 
 function my_update_post_meta($postId,$key,$value) {
